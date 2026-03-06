@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>app</title>
-<script src="cordova.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xenfuria AI App</title>
+
+    <script src="cordova.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        .loading-screen {
+            text-align: center;
+        }
+        /* Spinner sederhana saat loading awal */
+        .loader {
+            border: 4px f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
+
 <body>
+
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <p>Memuat Xenfuria AI...</p>
+    </div>
 
 <script>
 document.addEventListener("deviceready", function () {
-    cordova.InAppBrowser.open("https://xenfuriai.rf.gd","_self","location=no");
-});
+    
+    // URL target Anda
+    var targetUrl = "https://xenfuriai.rf.gd";
+
+    /**
+     * Membuka InAppBrowser
+     * target: "_blank" (Membuka di window baru di dalam app)
+     * options: 
+     * - location=no (Sembunyikan bar alamat/URL)
+     * - zoom=no (Cegah user zoom manual jika tidak perlu)
+     * - hidden=no (Langsung tampilkan)
+     */
+    var iab = cordova.InAppBrowser.open(targetUrl, '_blank', 'location=no,zoom=no,clearcache=yes,clearsessioncache=yes');
+
+    // Mencegah aplikasi tertutup saat tekan tombol Back di Android
+    // Sebaliknya, ini akan mencoba kembali ke halaman sebelumnya di webview
+    document.addEventListener("backbutton", function (e) {
+        iab.executeScript({
+            code: "history.back();"
+        }, function(values) {
+            // Jika tidak ada history back (sudah di home), Anda bisa menutup app atau biarkan saja
+        });
+    }, false);
+
+    // Jika user menutup browser (misal klik tombol done/close), tutup aplikasi
+    iab.addEventListener('exit', function() {
+        navigator.app.exitApp();
+    });
+
+}, false);
 </script>
 
 </body>
