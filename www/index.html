@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Xenfuri AI</title>
-
-<meta http-equiv="Content-Security-Policy"
-content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src * 'unsafe-inline'; media-src *">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-html,body{
-margin:0;
-height:100%;
-}
-iframe{
-border:none;
-width:100%;
-height:100%;
-}
-</style>
-
-</head>
-
-<body>
-
-<iframe src="https://xenfuriai.rf.gd"></iframe>
-
-</body>
-</html>
+<script>
+document.addEventListener("deviceready", function() {
+    cordova.InAppBrowser.open("https://xenfuriai.rf.gd", "_self");
+});
+</script>
