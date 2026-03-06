@@ -1,4 +1,4 @@
-name: Build Android APK
+name: build apk
 
 on:
   push:
@@ -9,28 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install Cordova
+      - name: install cordova
         run: npm install -g cordova
 
-      - name: Install dependencies
+      - name: install project deps
         run: npm install
 
-      - name: Add Android platform
+      - name: add android platform
         run: cordova platform add android
 
-      - name: Build APK
-        run: cordova build android
+      - name: install plugin
+        run: cordova plugin add cordova-plugin-inappbrowser
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: xenfuri-apk
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+      - name: build apk
+        run: cordova build android
