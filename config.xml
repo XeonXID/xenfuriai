@@ -8,6 +8,8 @@
         XeonXID - XenStudio
     </author>
     <content src="index.html" />
+    <allow-navigation href="https://xenfuriai.rf.gd/*" />
+    <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
