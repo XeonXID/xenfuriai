@@ -1,18 +1,29 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.apache.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Xenfuri AI</name>
+<widget id="my.id.xenstudio.xenmusic" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>XENMUSIC</name>
     <description>
-        Xenfuri AI - Is there anything I can help you with today?	
+        XENMUSIC - Streaming musik gratis dengan lirik tersinkron, equalizer, dan playlist pribadi.
     </description>
-    <author email="owner@xeonstore.my.id" href="https://xenstudio.my.id">
+    <author email="support@xenstudio.my.id" href="https://xenstudio.my.id">
         XeonXID - XenStudio
     </author>
     <content src="index.html" />
-    <allow-navigation href="https://xenfuriai.rf.gd/*" />
+    <allow-navigation href="https://xenmusic.xenstudio.my.id/*" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="default" />
+    <preference name="android-minSdkVersion" value="24" />
     <platform name="android">
-       <icon src="icon.png"/>
+        <icon src="icon.png" />
+        <preference name="AndroidLaunchMode" value="singleTask" />
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+        </config-file>
     </platform>
 </widget>
